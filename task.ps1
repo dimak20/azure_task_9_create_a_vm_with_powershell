@@ -7,7 +7,7 @@ $vnetAddressPrefix = "10.0.0.0/16"
 $subnetAddressPrefix = "10.0.0.0/24"
 $publicIpAddressName = "linuxboxpip"
 $sshKeyName = "linuxboxsshkey"
-$sshPath = "$HOME/.ssh/id_rsa"
+$sshPath = "$HOME/.ssh/id_rsa.pub"
 if (!(Test-Path -Path $sshPath)) {
     Write-Host "SSH key not found"
     exit 1
