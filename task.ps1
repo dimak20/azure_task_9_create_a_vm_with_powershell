@@ -15,7 +15,7 @@ if (!(Test-Path -Path $sshPath)) {
 $sshKeyPublicKey = Get-Content $sshPath -Raw
 $vmName = "matebox"
 $vmImage = "Ubuntu2204"
-$vmSize = "Standard_B2ats_v2"
+$vmSize = "Standard_B2ats_v2" #B1 from task is not available anymore for free tier, B2ats_v2 is the closest one available
 
 Write-Host "Creating a resource group $resourceGroupName ..."
 New-AzResourceGroup -Name $resourceGroupName -Location $location
