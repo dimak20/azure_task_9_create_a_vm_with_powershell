@@ -10,8 +10,12 @@ $sshKeyName = "linuxboxsshkey"
 $sshKeyPublicKey = Get-Content "$HOME/.ssh/id_rsa.pub" -Raw
 $vmName = "matebox"
 $vmImage = "Ubuntu2204"
-$vmSize = "Standard_B2ats_v2"
+$vmSize = "Standard_B1s"
 
+if ( -not $sshKeyPublicKey) {
+    Write-Host "SSH public key not found. Please generate an SSH key pair and place the public key in $HOME/.ssh/id_rsa.pub"
+    exit 1
+}
 Write-Host "Creating a resource group $resourceGroupName ..."
 New-AzResourceGroup -Name $resourceGroupName -Location $location
 
