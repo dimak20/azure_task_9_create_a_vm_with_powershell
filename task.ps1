@@ -7,15 +7,16 @@ $vnetAddressPrefix = "10.0.0.0/16"
 $subnetAddressPrefix = "10.0.0.0/24"
 $publicIpAddressName = "linuxboxpip"
 $sshKeyName = "linuxboxsshkey"
-$sshKeyPublicKey = Get-Content "$HOME/.ssh/id_rsa.pub" -Raw
-$vmName = "matebox"
-$vmImage = "Ubuntu2204"
-$vmSize = "Standard_B1s"
-
-if ( -not $sshKeyPublicKey) {
-    Write-Host "SSH public key not found. Please generate an SSH key pair and place the public key in $HOME/.ssh/id_rsa.pub"
+$sshPath = "$HOME/.ssh/id_rsa"
+if (!(Test-Path -Path $sshPath)) {
+    Write-Host "SSH key not found"
     exit 1
 }
+$sshKeyPublicKey = Get-Content $sshPath -Raw
+$vmName = "matebox"
+$vmImage = "Ubuntu2204"
+$vmSize = "Standard_B2ats_v2"
+
 Write-Host "Creating a resource group $resourceGroupName ..."
 New-AzResourceGroup -Name $resourceGroupName -Location $location
 
